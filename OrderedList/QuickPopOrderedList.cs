@@ -55,4 +55,11 @@ public class QuickPopOrderedList<T> : AbstractOrderedList<T>
             }
         }
     }
+    
+    public override T Peek()
+    {
+        ArgumentNullException.ThrowIfNull(_head);
+
+        return _head!.Value;
+    }
 }

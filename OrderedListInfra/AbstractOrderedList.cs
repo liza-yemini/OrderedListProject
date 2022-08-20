@@ -16,7 +16,7 @@ public abstract class AbstractOrderedList<T>
     public abstract bool IsEmpty();
 
     /*
-     * Pop - Removes the biggest element according to the comparar and returns it
+     * Pop - Removes the greatest element according to the comparar and returns it
      */
     public abstract T Pop();
  
@@ -25,4 +25,9 @@ public abstract class AbstractOrderedList<T>
      */
 
     public abstract void Push(T item);
+
+    /*
+     * Peek - Returns the greatest element according to the comparar
+     */
+    public abstract T Peek();
 }

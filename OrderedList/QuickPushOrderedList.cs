@@ -72,4 +72,23 @@ public class QuickPushOrderedList<T> : AbstractOrderedList<T>
             }
         }
     }
+
+    public override T Peek()
+    {
+        ArgumentNullException.ThrowIfNull(_head);
+
+        OrderedListInfra.LinkedListNode<T>? linkedListLast = _head;
+        OrderedListInfra.LinkedListNode<T>? current = _head;
+        //Find the greater element in the list
+        while (current != null)
+        {
+            // if linkedListLast.Value < current.Value
+            if (_comparar.Compare(linkedListLast.Value, current.Value) < 0)
+            {
+                linkedListLast = current;
+            }
+            current = current.Next;
+        }
+        return linkedListLast.Value;
+    }
 }
