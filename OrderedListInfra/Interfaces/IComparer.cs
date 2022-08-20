@@ -7,5 +7,5 @@ public interface IComparer<T>
      * x < y: return -1
      * x > y: return 1
      */
-    public int Compare(T x, T y);
+    public int Compare(T? x, T? y);
 }

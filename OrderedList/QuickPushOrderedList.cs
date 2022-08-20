@@ -1,7 +1,4 @@
 ﻿using OrderedListInfra;
-
-namespace OrderedList;
-
 public class QuickPushOrderedList<T> : AbstractOrderedList<T>
 {
     private OrderedListInfra.LinkedListNode<T>? _head;
@@ -21,16 +18,16 @@ public class QuickPushOrderedList<T> : AbstractOrderedList<T>
         ArgumentNullException.ThrowIfNull(_head);
 
         OrderedListInfra.LinkedListNode<T>? linkedListLast = _head;
-
+        OrderedListInfra.LinkedListNode<T>? current = _head;
         //Find the greater element in the list
-        while (linkedListLast!.Next != null)
+        while (current != null)
         {
-            // if linkedListLast.Value < linkedListLast.Next.Value
-            if (_comparar.Compare(linkedListLast.Value, linkedListLast.Next.Value) < 0)
+            // if linkedListLast.Value < current.Value
+            if (_comparar.Compare(linkedListLast.Value, current.Value) < 0)
             {
-                linkedListLast = linkedListLast.Next;
+                linkedListLast = current;
             }
-            linkedListLast = linkedListLast.Next;
+            current = current.Next;
         }
         T ret = linkedListLast.Value;
         Remove(linkedListLast);

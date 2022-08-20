@@ -33,9 +33,7 @@ public class QuickPopOrderedList<T> : AbstractOrderedList<T>
             {
                 _head = newNode;
             }
-        }
-        // if the item is greatest than then head.Value (which is the currently the greatest), replace the head
-        if (_comparar.Compare(item, _head.Value) > 0)
+        } else if (_comparar.Compare(item, _head.Value) > 0) // if the item is greatest than then head.Value (which is the currently the greatest), replace the head
         {
             newNode.Next = _head;
             lock (_lock)
@@ -43,17 +41,17 @@ public class QuickPopOrderedList<T> : AbstractOrderedList<T>
                 _head = newNode;
             }
         }
-        else
+        else 
         {
-            var current = _head;
-            while (_comparar.Compare(item, current!.Value) < 0)
+            var previous = _head;
+            while (previous.Next != null && _comparar.Compare(item, previous.Next!.Value) < 0)
             {
-                current = current.Next;
+                previous = previous.Next;
             }
             lock(_lock)
             {
-                newNode.Next = current.Next;
-                current.Next = newNode;
+                newNode.Next = previous.Next;
+                previous.Next = newNode;
             }
         }
     }
